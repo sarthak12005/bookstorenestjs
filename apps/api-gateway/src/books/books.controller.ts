@@ -1,5 +1,5 @@
 import { CreateBookDto } from '@bestbook/shared';
-import { Body, Controller, Inject, Post } from '@nestjs/common';
+import { Body, Controller, Get, Inject, Post } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 
 @Controller('books')
@@ -11,5 +11,10 @@ export class BooksController {
     @Post()
     createBook(@Body() data: CreateBookDto) {
         return this.bookService.send({cmd: 'create_book'}, data);
+    }
+
+    @Get()
+    getBooks() {
+        return this.bookService.send({cmd: 'get_books'},{});
     }
 }
