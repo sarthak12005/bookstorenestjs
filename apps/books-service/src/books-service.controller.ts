@@ -11,4 +11,9 @@ export class BooksServiceController {
   createBook(@Payload() dto:CreateBookDto) {
     return this.booksServiceService.create(dto);
   }
+
+  @MessagePattern({cmd: 'get_books'})
+  getBooks() {
+     return this.booksServiceService.getBooks();
+  }
 }

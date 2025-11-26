@@ -24,4 +24,12 @@ export class BooksServiceService {
          totalBooks: this.books.length
       }
    }
+
+   getBooks() {
+      return {
+         message: "Fetched all the books",
+         books: this.books,
+         totalBooks: this.books.length
+      }
+   }
 }

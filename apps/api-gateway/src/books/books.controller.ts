@@ -2,7 +2,7 @@ import { CreateBookDto, UpdateBookDto } from '@bestbook/shared';
 import { Body, Controller, Get, Inject, Param, Patch, Post } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 
-@Controller('books')
+@Controller('book')
 export class BooksController {
     constructor(
         @Inject('BOOK_SERVICE') private readonly bookService:ClientProxy
@@ -21,8 +21,8 @@ export class BooksController {
     @Patch(':id')
     updateBook(
         @Param('id') id:string,
-        @Body() data:UpdateBookDto 
+        @Body() data:UpdateBookDto
     ) {
-        return this.bookService
+        return this.bookService.send({cmd: 'update_book'}, data);
     }
 }
